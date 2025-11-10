@@ -24,7 +24,8 @@ export const Clock = () => {
                 minute: "2-digit",
                 second: "2-digit",
                 day: "numeric",
-                month: "long"
+                month: "long",
+                year: "numeric"
             })}
         </div>
     )
