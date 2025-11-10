@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import './App.css';
 import { Form } from "./Form";
-import { currencies } from "./currencies"; // Zakładamy, że ta ścieżka jest poprawna
+import { currencies } from "./currencies";
 
 function App() {
 
-    const [result, setResult] = useState(null); // Zmieniamy na null dla lepszej obsługi stanu
+    const [result, setResult] = useState(null);
 
     const calculate = (currency, amount) => {
-        // Zabezpieczamy się przed brakiem waluty (undefined)
+
         const currencyObject = currencies
             .find(({ short }) => short === currency);
 
@@ -19,7 +19,7 @@ function App() {
 
         const rate = currencyObject.rate;
 
-        // Używamy parseFloat, aby mieć pewność, że kwota jest liczbą
+
         setResult({
             sourceAmount: parseFloat(amount),
             targetAmount: parseFloat(amount) / rate,
@@ -32,7 +32,6 @@ function App() {
             <Form
                 result={result}
                 calculateResult={calculate}
-                // PRZEKAZUJEMY TABLICĘ WALUT
                 currencies={currencies}
             />
         </div>
