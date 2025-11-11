@@ -6,20 +6,23 @@
 
 Using our currency calculator, you can explore numerous currency combinations. We encourage you to try it out and use it in the future.
 
-Tech Stack
+
 This project was built using the following core technologies:
 
-React: Used for building the user interface and managing component states.
+**React**
+ Used for building the user interface and managing component states.
 
-JavaScript (ES6+): The primary programming language used for all logic and application flow.
+**JavaScript (ES6+)**
+ The primary programming language used for all logic and application flow.
 
-HTML5: Provides the foundational structure for all web content.
+**HTML5**
+ Provides the foundational structure for all web content.
 
-CSS3: Used for styling, layout, and making the application visually appealing.
+**CSS3** Used for styling, layout, and making the application visually appealing.
 
-npm: Used as the package manager for handling dependencies and running scripts (e.g., npm start, npm run deploy).
+**npm** Used as the package manager for handling dependencies and running scripts (e.g., npm start, npm run deploy).
 
-🚀 Deployment Tool
+### 🚀 Deployment Tool
 GitHub Pages (via gh-pages NPM package): Used for deploying and hosting the final production build of the application.
 
 # Getting Started with Create React App
