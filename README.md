@@ -7,7 +7,7 @@
 Using our currency calculator, you can explore numerous currency combinations. We encourage you to try it out and use it in the future.
 
 
-This project was built using the following core technologies:
+### This project was built using the following core technologies:
 
 **React**
  Used for building the user interface and managing component states.
