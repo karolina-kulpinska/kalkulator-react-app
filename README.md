@@ -4,6 +4,8 @@
 
 ![Zrzut ekranu kalkulatora](public/Image/readme.png)
 
+[Try our currency calculator!](https://karolina-kulpinska.github.io/kalkulator-react-app/)
+
 Using our currency calculator, you can explore numerous currency combinations. We encourage you to try it out and use it in the future.
 
 
