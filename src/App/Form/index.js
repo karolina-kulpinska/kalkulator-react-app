@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { Result } from "./Result";
 import "./style.css";
-
-// Stałe kursy walut
-const currencies = [
-    { short: "EUR", rate: 4.30, name: "Euro" },
-    { short: "USD", rate: 3.90, name: "Dolar amerykański" },
-    { short: "CHF", rate: 4.45, name: "Frank szwajcarski" },
-];
+import { currencies } from "../currencies";
 
 export const Form = () => {
-    // 🛑 HOOKI useState MUSZĄ BYĆ WEWNĄTRZ FUNKCJI KOMPONENTU!
+
     const [currency, setCurrency] = useState(currencies[0].short);
     const [amount, setAmount] = useState("");
-    const [result, setResult] = useState(null); // Stan do przechowywania wyniku
+    const [result, setResult] = useState(null);
 
     const calculate = (currency, amount) => {
         const currencyObject = currencies
@@ -35,7 +29,7 @@ export const Form = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        calculate(currency, amount); // Wywołujemy LOKALNĄ funkcję calculate
+        calculate(currency, amount);
     }
 
     return (
