@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css';
+import { Wrapper } from "./styled";
 
 export const Result = ({ result }) => {
     if (!result) {
@@ -7,13 +7,13 @@ export const Result = ({ result }) => {
     }
 
     return (
-        <div className="result__container">
+        <Wrapper>
             <p>
                 Wynik:
                 <strong>
                     {result.sourceAmount.toFixed(2)} PLN = {result.targetAmount.toFixed(2)} {result.currency}
                 </strong>
             </p>
-        </div>
+        </Wrapper>
     );
 };

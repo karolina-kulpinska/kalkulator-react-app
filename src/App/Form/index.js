@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Result } from "./Result";
-import "./style.css";
+import { Button, Input, Header, Info, LabelText, Select } from "./styled";
 import { currencies } from "../currencies";
 
 export const Form = () => {
@@ -34,20 +34,18 @@ export const Form = () => {
 
     return (
         <form
-            className="form"
             onSubmit={onSubmit}
         >
-            <h1 className="form__header">Kalkulator walut</h1>
+            <Header>
+                Kalkulator walut
+            </Header>
             <p>
                 <label>
-                    <span className="form__labelText">
-                        Kwota w PLN
-                    </span>
-                    <input
+                    <LabelText>Kwota w PLN</LabelText>
+                    <Input
                         value={amount}
                         onChange={({ target }) => setAmount(target.value)}
                         placeholder="Wpisz kwotę w zł"
-                        className="form__input"
                         type="number"
                         step="0.01"
                         required
@@ -56,9 +54,8 @@ export const Form = () => {
             </p>
             <p>
                 <label>
-                    <span className="form__labelText">Waluta</span>
-                    <select
-                        className="form__field"
+                    <LabelText>Waluta</LabelText>
+                    <Select
                         value={currency}
                         onChange={({ target }) => setCurrency(target.value)}
                     >
@@ -70,17 +67,19 @@ export const Form = () => {
                                 {currency.name}
                             </option>
                         ))}
-                    </select>
+                    </Select>
                 </label>
             </p>
 
             <p>
-                <button className="form__button">Przelicz</button>
+                <Button>
+                    Przelicz
+                </Button>
             </p>
 
-            <p className="form__info">
+            <Info>
                 Kursy walut aktualne na dzień 09.11.2025 r. Źródło: NBP.
-            </p>
+            </Info>
 
 
             <Result result={result} />
