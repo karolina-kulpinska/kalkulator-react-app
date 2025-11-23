@@ -8,8 +8,20 @@
 
 Using our currency calculator, you can explore numerous currency combinations. We encourage you to try it out and use it in the future.
 
+### 🌍 Data Source and API
+
+Currency exchange rates are dynamically fetched from an external Application Programming Interface (API) to ensure the data is current and real-time.
+
+* **Provider:** [CurrencyAPI](https://www.currencyapi.com/)
+* **API Endpoint:** The primary endpoint used is `/v3/latest`.
+* **Base Currency:** PLN (Polish Złoty) is set as the base currency for all calculations.
+
+**Note:** The application requires a valid API key from CurrencyAPI to function correctly.
+
 
 ### This project was built using the following core technologies:
+
+
 
 **React**
  Used for building the user interface and managing component states.
