@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import { Result } from "./Result";
-import { Button, Input, Header, Info, LabelText, Select } from "./styled";
-import { currencies } from "../currencies";
+import { Button, Input, Header, Info, LabelText, Select, Loading, Failure, } from "./styled";
+import { useRatesData } from "./useRatesData";
+
 
 export const Form = () => {
+    const [result, setResult] = useState();
+    const ratesData = useRatesData();
 
-    const [currency, setCurrency] = useState(currencies[0].short);
-    const [amount, setAmount] = useState("");
-    const [result, setResult] = useState(null);
-
-    const calculate = (currency, amount) => {
-        const currencyObject = currencies
-            .find(({ short }) => short === currency);
-
-        if (!currencyObject) {
-            console.error(`Błąd: Nie znaleziono kursu dla waluty: ${currency}`);
+    const calculateResult = (currency, amount) => {
+        if (!ratesData.rates) {
             return;
         }
 
-        const rate = currencyObject.rate;
+        const rate = ratesData.rates[currency];
 
         setResult({
-            sourceAmount: parseFloat(amount),
-            targetAmount: parseFloat(amount) / rate,
+            sourceAmount: +amount,
+            targetAmount: amount * rate,
             currency,
         });
-    };
+    }
+
+    const [currency, setCurrency] = useState("EUR")
+    const [amount, setAmount] = useState("");
 
     const onSubmit = (event) => {
         event.preventDefault();
-        calculate(currency, amount);
+        calculateResult(currency, amount);
     }
 
     return (
@@ -39,50 +37,67 @@ export const Form = () => {
             <Header>
                 Kalkulator walut
             </Header>
-            <p>
-                <label>
-                    <LabelText>Kwota w PLN</LabelText>
-                    <Input
-                        value={amount}
-                        onChange={({ target }) => setAmount(target.value)}
-                        placeholder="Wpisz kwotę w zł"
-                        type="number"
-                        step="0.01"
-                        required
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    <LabelText>Waluta</LabelText>
-                    <Select
-                        value={currency}
-                        onChange={({ target }) => setCurrency(target.value)}
-                    >
-                        {currencies.map((currency) => (
-                            <option
-                                key={currency.short}
-                                value={currency.short}
-                            >
-                                {currency.name}
-                            </option>
-                        ))}
-                    </Select>
-                </label>
-            </p>
+            {ratesData.state === "loading"
+                ? (
+                    <Loading>
+                        Jeszcze sekund... <br />Ładuję aktualne kursy walut
+                    </Loading>
+                )
+                : (
+                    ratesData.state === "error" ? (
+                        <Failure>
+                            Coś poszło nie tak! Spraawdź połączenie z internetem!
+                        </Failure>
+                    ) : (
+                        <>
+                            <p>
+                                <label>
+                                    <LabelText>Kwota w PLN</LabelText>
+                                    <Input
+                                        value={amount}
+                                        onChange={({ target }) => setAmount(target.value)}
+                                        placeholder="Wpisz kwotę w zł"
+                                        type="number"
+                                        step="0.01"
+                                        required
+                                    />
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <LabelText>Waluta</LabelText>
+                                    <Select
+                                        as="select"
+                                        value={currency}
+                                        onChange={({ target }) => setCurrency(target.value)}
+                                    >
+                                        {Object.keys(ratesData.rates || {}).map(((currency) => (
+                                            <option
+                                                key={currency}
+                                                value={currency}
+                                            >
+                                                {currency}
+                                            </option>
+                                        )))}
+                                    </Select>
+                                </label>
+                            </p>
 
-            <p>
-                <Button>
-                    Przelicz
-                </Button>
-            </p>
+                            <p>
+                                <Button>
+                                    Przelicz
+                                </Button>
+                            </p>
 
-            <Info>
-                Kursy walut aktualne na dzień 09.11.2025 r. Źródło: NBP.
-            </Info>
+                            <Info>
+                                Kursy walut aktualne na dzień {ratesData.date}. Źródło: Baza CurrencyAPI
+                            </Info>
 
 
-            <Result result={result} />
+                            <Result result={result} />
+                        </>
+                    )
+                )}
 
         </form>
     );

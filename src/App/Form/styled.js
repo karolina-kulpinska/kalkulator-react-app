@@ -65,3 +65,12 @@ export const Info = styled.p`
     align-items: center;
 `;
 
+export const Loading = styled.p`
+    color: ${({ theme }) => theme.color.teal};
+`;
+
+export const Failure = styled.p`
+    color: ${({ theme }) => theme.color.crimson};
+`;
+
+
