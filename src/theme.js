@@ -6,6 +6,7 @@ export const theme = {
         teal: "#008080",
         white: "#FFFFFF",
         black: "#000",
+        crimson: "#dc143c"
     },
 
     breakpoint: {
